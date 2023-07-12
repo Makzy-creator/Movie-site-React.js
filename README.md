@@ -1,2 +1,2 @@
 # React.js-projects
-React.js projects created by I as I learn.
+React.js projects created by me as I learn.
