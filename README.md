@@ -1,2 +1,2 @@
-# React.js-projects
-React.js projects created by me as I learn.
+# React.js-project
+Built a simple movie site with react. Contributors are welcome
