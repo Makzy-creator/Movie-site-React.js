@@ -1,13 +1,21 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const updateSearchText = keyword => {
     navigate(`/search/${keyword}`);
   };
+
+  useEffect(() => {
+    if (pathname.includes("/search/")) {
+      const keyword = decodeURIComponent(pathname.split("/search/")[1]);
+      setSearchText(keyword);
+    }
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -15,8 +23,7 @@ const Navbar = () => {
         <Link className="navbar-brand" to="/">
           Movie Browser
         </Link>
-        <button
-          // onClick={updateSearchText}
+        <button // onClick={updateSearchText}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -58,7 +65,7 @@ const Navbar = () => {
             <button
               className="btn btn-outline-success"
               type="submit"
-              onClick={e => updateSearchText(searchText)}
+              onClick={() => updateSearchText(searchText)}
             >
               Search
             </button>
